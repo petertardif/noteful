@@ -3,7 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import NoteList from './NoteList/NoteList';
 import NoteListFilter from './NoteListFilter/NoteListFilter';
-import dummyStore from './dummy-store'
+import dummyStore from './dummy-store';
+import NotePage from './NotePage/NotePage';
 import './App.css';
 
 export default class App extends Component {
@@ -74,9 +75,10 @@ export default class App extends Component {
           />
           <Route 
             path='/note/:noteId' 
-            render={() => 
-              <NoteList
-                {...this.state} 
+            render={(match) => 
+              <NotePage
+                {...this.state}
+                {...match}
               />
             }
           />
