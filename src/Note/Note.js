@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Note(props) {
-    const date = new Date(props.modified).toDateString();
-    return (
-        <li key={props.id}>
+export default class Note extends Component {
+  static defaultProps = {
+      notes: [],
+  };
+
+    render() {
+      const noteProps = this.props;
+      const date = new Date(noteProps.modified).toDateString();
+      return (
+        <li key={noteProps.id}>
             <div>
-                <h2><Link to={`/note/${props.id}`}>{props.name}</Link></h2>
+                <h2><Link to={`/note/${noteProps.id}`}>{noteProps.name}</Link></h2>
                 <button>Delete</button>
                 <div>
                     Modified <span>{date}</span> 
                 </div>
-                <p>{props.content}</p>
+                <p>{noteProps.content}</p>
             </div>
         </li>
     )
+    }
+    
 }

@@ -20,7 +20,6 @@ export default class NotePage extends Component {
     return (
       <>
         {filteredNote}
-        {/* <p>{this.props.notes.content}</p> */}
       </>
     )
   }
