@@ -11,7 +11,7 @@ export default class NoteListFilter extends Component {
              folder.id === this.props.match.params.folderId); 
         
         let filteredNotes = this.context.notes.map(note => 
-              selectedFolder.id === note.folderId ? <Note key={note.id} {...note} /> : null 
+              selectedFolder.id === note.folderId ? <Note key={note.id} i={note} /> : null 
         );
 
         return (

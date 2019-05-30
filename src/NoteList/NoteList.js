@@ -13,6 +13,7 @@ export default class NoteList extends Component {
                { this.context.notes.map(note => 
                 <Note
                   key={note.id}
+                  i={note}
                   // {...NotesContext}
                 />
                )}

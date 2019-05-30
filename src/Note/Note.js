@@ -6,8 +6,7 @@ export default class Note extends Component {
     static contextType = NotesContext;
     
     render() {
-        debugger;
-      const noteContext = this.context.notes;
+      const noteContext = this.props.i;
       const date = new Date(noteContext.modified).toDateString();
       return (
         <li key={noteContext.id}>
