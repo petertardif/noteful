@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import Note from '../Note/Note';
 import AddNote from '../AddNote/AddNote';
+import { NotesContext } from '../NotesContext';
 
 export default class NoteList extends Component {
-    static defaultProps = {
-        notes: [],
-    };
+    static contextType = NotesContext;
 
     render() {
         return (
           <section>
             <ul aria-live='polite'>
-               { this.props.notes.map(note => 
+               { this.context.notes.map(note => 
                 <Note
                   key={note.id}
-                  {...note}
+                  // {...NotesContext}
                 />
                )}
             </ul>  

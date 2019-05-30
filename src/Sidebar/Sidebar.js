@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import FoldersNotesContext from '../FoldersNotesContext';
+// import { FoldersContext } from '../FoldersContext';
+import { NotesContext } from '../NotesContext';
 
 export default class Sidebar extends Component {
-    static contextType = FoldersNotesContext;
-
+    static contextType = NotesContext;
     render() {
         return (
             <section>

@@ -5,7 +5,7 @@ import NoteList from './NoteList/NoteList';
 import NoteListFilter from './NoteListFilter/NoteListFilter';
 import dummyStore from './dummy-store';
 import NotePage from './NotePage/NotePage';
-import FoldersNotesContext from './FoldersNotesContext';
+import { NotesContext } from './NotesContext';
 import './App.css';
 
 export default class App extends Component {
@@ -20,17 +20,18 @@ export default class App extends Component {
   }
 
   render() {
-    const contextValue = {
+    const contextNotesValue = {
       notes: this.state.notes,
+      addNote: this.addNote,
+      deleteNote: this.deleteNote,
       folders: this.state.folders,
       addFolder: this.addFolder,
       deleteFolder: this.deleteFolder,
-      addNote: this.addNote,
-      deleteNote: this.deleteNote,
     }
+
     return (
       <div className='App'>
-        <FoldersNotesContext.Provider value={contextValue}>
+        <NotesContext.Provider value={contextNotesValue}>
           <nav>
             <Route
               exact
@@ -66,7 +67,7 @@ export default class App extends Component {
               component={NotePage}
             />
           </main>
-        </FoldersNotesContext.Provider>
+        </NotesContext.Provider>
       </div>
     );
   }
