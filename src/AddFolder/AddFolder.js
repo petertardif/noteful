@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { NotesContext } from '../NotesContext';
 
 export default class AddFolder extends Component {
@@ -23,7 +24,6 @@ export default class AddFolder extends Component {
       return response.json()
     })
     .then(folder => {
-      debugger;
       this.context.addFolder(folder)
       this.props.history.push(`/folder/${folder.id}`)
     })
@@ -46,9 +46,9 @@ export default class AddFolder extends Component {
               <input type='text' id='folder-name-input' name='folder-name'/>
             </div>
             <div className='buttons'>
-              <button type='submit'>
-                Add folder
-              </button>
+            <div>
+                <Link to={`/add-note`}>+ Note</Link>
+            </div>
             </div>
           </form>
       </section>
