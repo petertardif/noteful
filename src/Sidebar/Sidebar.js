@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 // import { FoldersContext } from '../FoldersContext';
 import { NotesContext } from '../NotesContext';
 
@@ -16,7 +16,7 @@ export default class Sidebar extends Component {
                         )}
                 </ul>
                 <div>
-                    <a href='#'>+ Folder</a>
+                    <Link to={`/add-folder`}>+ Folder</Link>
                 </div>
             </section>
         )

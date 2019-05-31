@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar';
 import NoteList from './NoteList/NoteList';
 import NoteListFilter from './NoteListFilter/NoteListFilter';
 // import dummyStore from './dummy-store';
+import AddFolder from './AddFolder/AddFolder'
 import NotePage from './NotePage/NotePage';
 import { NotesContext } from './NotesContext';
 import './App.css';
@@ -44,10 +45,23 @@ export default class App extends Component {
       })
   }
 
+  handleAddFolder = folder => {
+    this.setState({
+      folders: [
+        ...this.state.folders,
+        folder
+      ]
+    })
+  }
+
   handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
     })
+  }
+
+  addFolder = (folderName, folderId) => {
+
   }
   
   render() {
@@ -56,7 +70,7 @@ export default class App extends Component {
       addNote: this.addNote,
       deleteNote: this.handleDeleteNote,
       folders: this.state.folders,
-      addFolder: this.addFolder,
+      addFolder: this.handleAddFolder,
       deleteFolder: this.deleteFolder,
     }
 
@@ -76,6 +90,10 @@ export default class App extends Component {
             <Route
               path='/note/:noteId'
               component={Sidebar}
+            />
+            <Route 
+              path='/add-folder'
+              component={AddFolder}
             />
           </nav>
           <header role='banner'>
