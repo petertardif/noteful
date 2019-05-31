@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Note from '../Note/Note';
-import AddNote from '../AddNote/AddNote';
+import { Link } from 'react-router-dom';
 import { NotesContext } from '../NotesContext';
 
 export default class NoteListFilter extends Component {
@@ -23,7 +23,9 @@ export default class NoteListFilter extends Component {
             <ul aria-live='polite'>
                 { displayNotes }
             </ul>  
-            <AddNote />
+            <div>
+                <Link to={`/add-note`}>+ Note</Link>
+            </div> 
         </section>
         )
     }

@@ -46,9 +46,9 @@ export default class AddFolder extends Component {
               <input type='text' id='folder-name-input' name='folder-name'/>
             </div>
             <div className='buttons'>
-            <div>
-                <Link to={`/add-note`}>+ Note</Link>
-            </div>
+            <button type='submit'>
+              Add folder
+            </button>
             </div>
           </form>
       </section>
