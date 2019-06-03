@@ -7,6 +7,7 @@ import NoteListFilter from './NoteListFilter/NoteListFilter';
 import AddFolder from './AddFolder/AddFolder'
 import AddNote from './AddNote/AddNote';
 import NotePage from './NotePage/NotePage';
+import NoteListError from './NoteList/NoteListError';
 import { NotesContext } from './NotesContext';
 import './App.css';
 
@@ -112,10 +113,21 @@ export default class App extends Component {
               </h1>
           </header>
           <main className='content' aria-live='polite'>
-            <Route 
+            {/* <Route 
               exact
               path='/' 
               component={NoteList}
+            /> */}
+            <Route 
+              exact
+              path='/' 
+              render={() => 
+                <NoteListError>
+                  <NoteList
+                    {...this.state} 
+                  />
+                </NoteListError>
+              }
             />
             <Route 
               path='/folder/:folderId'
@@ -125,6 +137,7 @@ export default class App extends Component {
               path='/note/:noteId' 
               component={NotePage}
             />
+            
           </main>
         </NotesContext.Provider>
       </div>

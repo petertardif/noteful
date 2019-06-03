@@ -11,7 +11,6 @@ export default class AddNote extends Component {
     handleSubmit(event) {
       event.preventDefault();
       const today = new Date().toDateString();
-      debugger;
       const note = {
         name: event.target['note-name'].value,
         folderId: event.target['choosenFolder'].value,
