@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { NotesContext } from '../NotesContext';
 
-export default function Note(props) {
-    const date = new Date(props.modified).toDateString();
-    return (
-        <li key={props.id}>
+export default class Note extends Component {
+    static contextType = NotesContext;
+    
+    render() {
+      const noteContext = this.props.i;
+      const date = new Date(noteContext.modified).toDateString();
+      return (
+        <li key={noteContext.id}>
             <div>
-                <h2><Link to={`/note/${props.id}`}>{props.name}</Link></h2>
+                <h2><Link to={`/note/${noteContext.id}`}>{noteContext.name}</Link></h2>
                 <button>Delete</button>
                 <div>
                     Modified <span>{date}</span> 
                 </div>
-                <p>{props.content}</p>
+                <p>{noteContext.content}</p>
             </div>
-        </li>
-    )
+        </li>   
+      )
+    }
 }

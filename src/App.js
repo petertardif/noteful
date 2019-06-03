@@ -5,6 +5,7 @@ import NoteList from './NoteList/NoteList';
 import NoteListFilter from './NoteListFilter/NoteListFilter';
 import dummyStore from './dummy-store';
 import NotePage from './NotePage/NotePage';
+import { NotesContext } from './NotesContext';
 import './App.css';
 
 export default class App extends Component {
@@ -19,70 +20,54 @@ export default class App extends Component {
   }
 
   render() {
+    const contextNotesValue = {
+      notes: this.state.notes,
+      addNote: this.addNote,
+      deleteNote: this.deleteNote,
+      folders: this.state.folders,
+      addFolder: this.addFolder,
+      deleteFolder: this.deleteFolder,
+    }
+
     return (
       <div className='App'>
-        <nav>
-        <Route
-            exact
-            path='/'
-            render={(props) => 
-              <Sidebar
-                {...this.state}
-              />
-            } 
-          />
-          <Route
-            path='/folder/:folderId'
-            render={() => 
-              <Sidebar
-                {...this.state}
-              />
-            } 
-          />
-          <Route
-            path='/note/:noteId'
-            render={() => 
-              <Sidebar
-                {...this.state}
-              />
-            } 
-          />
-        </nav>
-        <header role='banner'>
-            <h1>
-              <Link to="/">Noteful</Link>
-            </h1>
-        </header>
-        <main className='content' aria-live='polite'>
-          <Route 
-            exact
-            path='/' 
-            render={() => 
-              <NoteList
-                {...this.state} 
-              />
-            }
-          />
-          <Route 
-            path='/folder/:folderId'
-            render={(match) => 
-              <NoteListFilter
-                {...this.state} 
-                {...match} 
-                
-              />
-            }
-          />
-          <Route 
-            path='/note/:noteId' 
-            render={(match) => 
-              <NotePage
-                {...this.state}
-                {...match}
-              />
-            }
-          />
-        </main>
+        <NotesContext.Provider value={contextNotesValue}>
+          <nav>
+            <Route
+              exact
+              path='/'
+              component={Sidebar}
+            />
+            <Route
+              path='/folder/:folderId'
+              component={Sidebar}
+            />
+            <Route
+              path='/note/:noteId'
+              component={Sidebar}
+            />
+          </nav>
+          <header role='banner'>
+              <h1>
+                <Link to="/">Noteful</Link>
+              </h1>
+          </header>
+          <main className='content' aria-live='polite'>
+            <Route 
+              exact
+              path='/' 
+              component={NoteList}
+            />
+            <Route 
+              path='/folder/:folderId'
+              component={NoteListFilter}
+            />
+            <Route 
+              path='/note/:noteId' 
+              component={NotePage}
+            />
+          </main>
+        </NotesContext.Provider>
       </div>
     );
   }
