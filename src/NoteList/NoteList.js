@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Note from '../Note/Note';
-import AddNote from '../AddNote/AddNote';
 import { NotesContext } from '../NotesContext';
 
 export default class NoteList extends Component {
@@ -17,8 +17,10 @@ export default class NoteList extends Component {
                   // {...NotesContext}
                 />
                )}
-            </ul>  
-            <AddNote />
+            </ul> 
+            <div>
+                <Link to={`/add-note`}>+ Note</Link>
+            </div> 
           </section>
         );
     }
