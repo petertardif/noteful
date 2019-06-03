@@ -14,7 +14,6 @@ export default class NoteList extends Component {
                 <Note
                   key={note.id}
                   i={note}
-                  // {...NotesContext}
                 />
                )}
             </ul> 
