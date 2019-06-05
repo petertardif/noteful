@@ -1,9 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { NotesContext } from '../NotesContext';
+import ValidationError from '../ValidationError/ValidationError';
+import PropTypes from 'prop-types';
 
 export default class AddFolder extends Component {
+  static defaultProps = {
+    history: {
+      push: () => {}
+    },
+  }
+
   static contextType = NotesContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      folderName: '',
+      folderNameValid: false,
+      formValid: false,
+      validationMessages: {
+        folderName: ''
+      }
+    }
+  }
+
+  updateFolderName(folderName) {
+    this.setState({folderName}, () => {this.validateFolderName(folderName)});
+  }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -32,6 +55,28 @@ export default class AddFolder extends Component {
     })
   }
 
+  validateFolderName(fieldValue) {
+    const fieldErrors = {...this.state.validationMessages};
+    let hasError = false;
+
+    fieldValue = fieldValue.trim();
+    if(fieldValue.length === 0) {
+      fieldErrors.name = 'Folder Name is required.';
+      hasError = true;
+    } 
+
+    this.setState({
+      validationMessages: fieldErrors,
+      folderNameValid: !hasError
+    }, this.formValid);
+  }
+
+  formValid() {
+    this.setState({
+      formValid: this.state.folderNameValid
+    });
+  }
+
   render() {
     return (
       <section className='AddFolder'>
@@ -43,10 +88,11 @@ export default class AddFolder extends Component {
               <label htmlFor='folder-name-input'>
                 Name
               </label>
-              <input type='text' id='folder-name-input' name='folder-name'/>
+              <input type='text' id='folder-name-input' name='folder-name' onChange={e => this.updateFolderName(e.target.value)} />
+              <ValidationError hasError={!this.state.folderNameValid} message={this.state.validationMessages.name}/>
             </div>
             <div className='buttons'>
-            <button type='submit'>
+            <button type='submit' disabled={!this.state.formValid}>
               Add folder
             </button>
             </div>
@@ -54,4 +100,8 @@ export default class AddFolder extends Component {
       </section>
     )
   }
+}
+
+AddFolder.propTypes = {
+  history: PropTypes.object
 }

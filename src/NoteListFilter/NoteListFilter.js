@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import Note from '../Note/Note';
 import { Link } from 'react-router-dom';
 import { NotesContext } from '../NotesContext';
+import PropTypes from 'prop-types';
 
 export default class NoteListFilter extends Component {
+    static defaultProps = {
+      match: {},
+    }
+
     static contextType = NotesContext;
 
     render() {
@@ -29,4 +34,8 @@ export default class NoteListFilter extends Component {
         </section>
         )
     }
+}
+
+NoteListFilter.propTypes = {
+  match: PropTypes.object
 }

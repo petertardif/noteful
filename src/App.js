@@ -3,7 +3,6 @@ import { Route, Link } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import NoteList from './NoteList/NoteList';
 import NoteListFilter from './NoteListFilter/NoteListFilter';
-// import dummyStore from './dummy-store';
 import AddFolder from './AddFolder/AddFolder'
 import AddNote from './AddNote/AddNote';
 import NotePage from './NotePage/NotePage';

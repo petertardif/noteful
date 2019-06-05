@@ -56,6 +56,11 @@ export default class Note extends Component {
 }
 
 Note.propTypes = {
-    i: PropTypes.object.isRequired,
+    i: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        modified: PropTypes.instanceOf(Date),
+        name: PropTypes.string,
+        content: PropTypes.string
+    }),
     onDeleteNote: PropTypes.func
 }
