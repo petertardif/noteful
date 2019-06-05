@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NotesContext } from '../NotesContext';
 import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
+import './AddFolder.css';
 
 export default class AddFolder extends Component {
   static defaultProps = {

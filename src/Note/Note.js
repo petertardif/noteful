@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { NotesContext } from '../NotesContext';
 import PropTypes from 'prop-types';
+import './Note.css'
 
 export default class Note extends Component {
     static defaultProps = {
@@ -39,17 +40,19 @@ export default class Note extends Component {
       const date = new Date(noteContext.modified).toDateString();
       return (
         <li key={noteContext.id}>
-            <div>
-                <h2><Link to={`/note/${noteContext.id}`}>{noteContext.name}</Link></h2>
+            <div className='Note'>
+                <h2 className='Note__title'><Link to={`/note/${noteContext.id}`}>{noteContext.name}</Link></h2>
                 <button
+                    className='Note__delete'
                     type='button'
                     onClick={this.handleClickDelete}
                 >Delete</button>
-                <div>
-                    Modified <span>{date}</span> 
+                <div className='Note__dates'>
+                    <div className='Note__dates-modified'>
+                        Modified <span className='Date'>{date}</span> 
+                    </div>
                 </div>
-                <p>{noteContext.content}</p>
-            </div>
+            </div> 
         </li>   
       )
     }
@@ -57,7 +60,7 @@ export default class Note extends Component {
 
 Note.propTypes = {
     i: PropTypes.shape({
-        id: PropTypes.number.isRequired,
+        id: PropTypes.number,
         modified: PropTypes.instanceOf(Date),
         name: PropTypes.string,
         content: PropTypes.string

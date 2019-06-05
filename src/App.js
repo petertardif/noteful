@@ -83,7 +83,7 @@ export default class App extends Component {
     return (
       <div className='App'>
         <NotesContext.Provider value={contextNotesValue}>
-          <nav>
+          <nav className='App__nav'>
             <Route
               exact
               path='/'
@@ -106,12 +106,12 @@ export default class App extends Component {
               component={AddNote}
             />
           </nav>
-          <header role='banner'>
+          <header className='App__header' role='banner'>
               <h1>
                 <Link to="/">Noteful</Link>
               </h1>
           </header>
-          <main className='content' aria-live='polite'>
+          <main className='App__main' aria-live='polite'>
             {/* <Route 
               exact
               path='/' 
