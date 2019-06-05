@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NotesContext } from '../NotesContext';
 import ValidationError from '../ValidationError/ValidationError';
 import PropTypes from 'prop-types';
+import './AddNote.css';
 
 export default class AddNote extends Component {
     static defaultProps = {
@@ -131,7 +132,7 @@ export default class AddNote extends Component {
     render() {
       const { folders } = this.context
       return (
-        <section>
+        <section className="AddNote">
           <h2>Create a note</h2>
           <form
             onSubmit={event => this.handleSubmit(event)}
